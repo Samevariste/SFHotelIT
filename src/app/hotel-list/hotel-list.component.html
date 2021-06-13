@@ -1,0 +1,45 @@
+<div class="container">
+    <h2 *ngIf ="hotels && hotels.length > 0"> {{title}}</h2>
+    <button class="btn btn-primary d-flex" (click)="toggleIsNewbadge()">
+        <span class="material-icons">
+            {{ showBadge ? 'visibility_off' : 'visibility' }}
+        </span>
+        <span class="ml-2">
+            {{showBadge ? 'Cacher' : 'Afficher'}} nouveau
+        </span>
+    </button>
+    <hr>
+    <div class="my-2">
+        <div class="row">
+            <div class="col-md-4">
+                <span>Filtre actuel: </span>
+                <b>{{hotelFilter}}</b>
+            </div>
+            <div class="col-md-8 form-group">
+              <label for=""></label>
+              <input type="text" 
+                    name="" id="" 
+                    class="form-control" 
+                    placeholder="" 
+                    aria-describedby="helpId"
+                    [ngModel] ="hotelFilter"
+                    (ngModelChange)="hotelFilter = $event">
+              <small id="helpId" class="text-muted">search..</small>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 mt-2">
+        <div class="col-md-4" *ngFor="let hotel of hotels">
+            <div class="card" style="width: 18rem;">
+                <img [src]="hotel.imageUrl" [title] ="hotel.hotelName" class="card-img-top" [alt]="hotel.hotelName">
+                <div class="card-body">
+                <h5 class="card-title">{{hotel.hotelName}}</h5>
+                <p class="card-text">{{hotel.description}}</p>
+                <span class="badge badge-pill badge-info" *ngIf="showBadge">Nouveau</span>
+                <a href="#" class="btn btn-primary">Plus d'information..</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
